@@ -6,5 +6,10 @@
 Описание шагов.
 
 * Создаем контроллер подписи (signature)
+* Создаем сервис
+* Запуск сервиса из командной строки: 
+ - mvn clean install
+ - mvn -pl sample-service spring-boot:run
+
 * 
 
