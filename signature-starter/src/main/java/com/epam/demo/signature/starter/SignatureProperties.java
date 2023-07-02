@@ -1,9 +1,15 @@
 package com.epam.demo.signature.starter;
 
+import org.hibernate.validator.constraints.time.DurationMax;
+import org.hibernate.validator.constraints.time.DurationMin;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.Duration;
 
+@Validated
 @ConfigurationProperties("demo.signature")
 public class SignatureProperties {
     //Для того чтобы в application.properties появлялись подсказки нужно
@@ -11,6 +17,8 @@ public class SignatureProperties {
     /**
      * Username for email signature
      */
+    @NotBlank
+    @Size(min = 5, max = 100)
     private String username = "NONAME";
     private Extra extra = new Extra();
 
@@ -33,7 +41,9 @@ public class SignatureProperties {
     /**
      * Retention period for email
      */
-    public static class Extra{
+    public static class Extra {
+        @DurationMin(minutes = 5)
+        @DurationMax(hours = 1)
         private Duration retentionPeriod = Duration.ofMinutes(5);
 
         public Duration getRetentionPeriod() {
