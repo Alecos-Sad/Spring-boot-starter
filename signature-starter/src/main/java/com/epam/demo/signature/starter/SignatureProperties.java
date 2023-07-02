@@ -6,6 +6,11 @@ import java.time.Duration;
 
 @ConfigurationProperties("demo.signature")
 public class SignatureProperties {
+    //Для того чтобы в application.properties появлялись подсказки нужно
+    //подключить зависимость и над полем писать javadoc
+    /**
+     * Username for email signature
+     */
     private String username = "NONAME";
     private Extra extra = new Extra();
 
@@ -25,6 +30,9 @@ public class SignatureProperties {
         this.extra = extra;
     }
 
+    /**
+     * Retention period for email
+     */
     public static class Extra{
         private Duration retentionPeriod = Duration.ofMinutes(5);
 
